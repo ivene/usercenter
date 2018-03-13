@@ -1,0 +1,14 @@
+{
+    "name": "ivene/usercenter",
+    "description": "ivene user center",
+    "type": "laravel",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Yao.Yao",
+            "email": "yao_ivene@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
