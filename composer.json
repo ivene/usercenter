@@ -1,8 +1,9 @@
 {
     "name": "ivene/usercenter",
-    "description": "ivene user center",
-    "type": "laravel",
-    "license": "mit",
+    "description": "The Laravel UserCenter Plugin",
+    "keywords": ["UserCenter", "Plugin"],
+    "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Yao.Yao",
@@ -10,5 +11,25 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=7.1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ivene\\UserCenter\\":"src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ivene\\UserCenter\\UserCenterProvider"
+            ],
+            "aliases": {
+                "UserCenter": "Ivene\\UserCenter\\UserCenter"
+            }
+        }
+    }
 }
