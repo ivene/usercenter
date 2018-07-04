@@ -14,15 +14,27 @@ class UcCenter
 {
     use Result;
     private $tokener;
+    private $tokenRepository;
     function __construct()
     {
         $this->tokener = new Tokener();
+        $this->tokenRepository =  new UcUserTokenRepository();
     }
 
-    public function login($loginname,$passwd){
+    public function login($loginname,$passwd,$client_id){
         $user  = UcUser::where('loginname',$loginname)->first();
         if(!empty($user)){
-            
+            if(md5($passwd) ==  $user->password){
+                $token  =  UcUserToken::where('user_id',$user->id)->where('client_id',$client_id)->first();
+                if(empty($token)){
+                    $token=$this->tokenRepository->create($user->id,$client_id);
+                }
+                return $this->success($token);
+            }else{
+                return $this->error('密码错误');
+            }
+        }else{
+            return $this->error('登陆账号不存在');
         }
     }
 
@@ -38,7 +50,7 @@ class UcCenter
             ->where('client_id',$clientid)
             ->first();
         if(empty($token)){
-            return null;
+            return "";
         }else{
             return $token->access_token;
         }

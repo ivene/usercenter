@@ -8,12 +8,9 @@ use Illuminate\Support\Facades\Input;
 
 class UserCenterController
 {
-
     use Result;
-
     protected $validation;
     protected $token;
-
     function __construct(ValidationFactory $validation,UcUserTokenRepository $token)
     {
         $this->validation = $validation;
@@ -21,10 +18,8 @@ class UserCenterController
     }
 
     public function login(){
-        return "message";
+        return UserCenter::login(Input::get('loginname'), Input::get('password'),Input::get('client_id'));
     }
-
-
     /**
      * @return \Illuminate\Http\JsonResponse
      * @description 注册一个用户 返回用户信息和Token信息
